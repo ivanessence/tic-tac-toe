@@ -26,56 +26,80 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
-        android:id="@+id/cross"
+        android:id="@+id/imgField4"
         android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="57dp"
-        app:srcCompat="@drawable/cross2"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/button"
-        android:layout_marginEnd="25dp" />
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/imgField1"
+        android:layout_alignTop="@+id/imgField5"
+        app:srcCompat="@android:drawable/list_selector_background" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgField7"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/cross2"
-        android:layout_below="@+id/imageView4"
+        android:layout_alignStart="@+id/imgField1"
+        android:layout_alignTop="@+id/imgField8"
+        app:srcCompat="@android:drawable/list_selector_background" />
+
+    <ImageView
+        android:id="@+id/imgField8"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignStart="@+id/imgField5"
+        android:layout_alignTop="@+id/imgField9"
+        app:srcCompat="@android:drawable/list_selector_background" />
+
+    <ImageView
+        android:id="@+id/imgField5"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_alignStart="@+id/imgField2"
+        android:layout_alignTop="@+id/imgField6"
+        app:srcCompat="@android:drawable/list_selector_background" />
+
+    <ImageView
+        android:id="@+id/imgField9"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignStart="@+id/imgField6"
+        android:layout_below="@+id/imgField6"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@android:drawable/list_selector_background" />
+
+    <ImageView
+        android:id="@+id/imgField6"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@android:drawable/list_selector_background"
+        android:layout_below="@+id/imgField3"
+        android:layout_alignStart="@+id/imgField3" />
+
+    <ImageView
+        android:id="@+id/imgField3"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@+id/imgField2"
+        android:layout_marginStart="33dp"
         android:layout_toEndOf="@+id/button"
-        android:layout_marginStart="20dp" />
+        app:srcCompat="@android:drawable/list_selector_background" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imgField2"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@+id/imgField1"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@android:drawable/list_selector_background" />
+
+    <ImageView
+        android:id="@+id/imgField1"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="152dp"
-        app:srcCompat="@drawable/cross2" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:srcCompat="@drawable/zero2"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_alignStart="@+id/imageView7" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignStart="@+id/imageView3"
-        android:layout_alignTop="@+id/cross"
-        app:srcCompat="@drawable/zero2" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignStart="@+id/cross"
-        android:layout_alignTop="@+id/imageView3"
-        app:srcCompat="@drawable/zero2" />
+        android:layout_marginEnd="33dp"
+        android:layout_marginTop="59dp"
+        android:layout_toStartOf="@+id/button"
+        app:srcCompat="@android:drawable/list_selector_background" />
 
 </RelativeLayout>
