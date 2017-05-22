@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="username">Введите свой ник</string>
+    <string name="enter">Войти</string>
 </resources>
