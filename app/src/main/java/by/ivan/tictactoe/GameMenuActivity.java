@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -23,6 +24,8 @@ import java.util.List;
 
 import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
+import EventBusPOJO.Invite;
+import EventBusPOJO.InviteAccept;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
 import EventBusPOJO.UserListResult;
@@ -77,7 +80,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         usersListView.setAdapter(adapter);
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetEnemy(Enemy enemy) {
         AlertDialog.Builder kissEnemyAssAlert = new AlertDialog.Builder(this);
         kissEnemyAssAlert.setMessage("Ваш противник " + enemy.enemy + " послал Вас нахуй");
@@ -100,6 +103,23 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         intent.putExtra("enemynickname", game.enemynickname);
         Toast.makeText(this, "ПОНЕСЛАСЬ", Toast.LENGTH_LONG).show();
         startActivity(intent);
+    }
+
+    @Subscribe
+    public void onInvite(final Invite invite) {
+        AlertDialog.Builder inviteToBattle = new AlertDialog.Builder(this);
+        inviteToBattle.setMessage("Ваш противник " + invite.enemy + " приглашает Вас на игру");
+        inviteToBattle.setCancelable(true);
+        inviteToBattle.setPositiveButton(
+                "Понятненько",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        EventBus.getDefault().post(new InviteAccept("invite_accept", invite.gameid));
+                    }
+                });
+        AlertDialog alert11 = inviteToBattle.create();
+        alert11.show();
     }
 
     public List getUsersList(JSONArray jsonArray) {

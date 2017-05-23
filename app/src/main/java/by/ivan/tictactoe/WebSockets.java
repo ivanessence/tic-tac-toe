@@ -20,6 +20,8 @@ import java.io.IOException;
 
 import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
+import EventBusPOJO.Invite;
+import EventBusPOJO.InviteAccept;
 import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
@@ -72,10 +74,14 @@ public class WebSockets extends Service {
                                 String enemynickname = jObject.getString("enemynickname");
                                 EventBus.getDefault().post(new Game(result, gameid, enemynickname));
                                 Log.i(TAG, "GAMEID");
-                            } else if(jObject.has("enemy")) { //Если это, то оппонент не дал согласие на игру, и нам приходит отказ
-                                result = jObject.getString("enemy");
-                                EventBus.getDefault().post(new Enemy(result));
-                                Log.i(TAG, "ENEMY");
+//                            } else if(jObject.has("enemy")) { //Если это, то оппонент не дал согласие на игру, и нам приходит отказ
+//                                result = jObject.getString("enemy");
+//                                EventBus.getDefault().post(new Enemy(result));
+//                                Log.i(TAG, "ENEMY");
+                            } else if(jObject.has("invite")) {
+                                String enemy = jObject.getString("enemy");
+                                String gameid = jObject.getString("gameid");
+                                EventBus.getDefault().post(new Invite(enemy, gameid));
                             }
 
                             Log.i(TAG, "onTextMessage2: " + result);
@@ -123,6 +129,19 @@ public class WebSockets extends Service {
         try {
             jsonObject.put("cmd", "getUserList");
             jsonObject.put("nickname", SignInActivity.NICKNAME);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ws.sendText(jsonObject.toString());
+    }
+
+    @Subscribe
+    public void inviteAccept(InviteAccept inviteAccept) {
+        Log.i(TAG, "inviteAccept: ");
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("cmd", "invite_accept");
+            jsonObject.put("gameid", inviteAccept.gameid);
         } catch (JSONException e) {
             e.printStackTrace();
         }
