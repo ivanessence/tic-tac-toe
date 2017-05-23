@@ -78,8 +78,9 @@ public class WebSockets extends Service {
 //                                result = jObject.getString("enemy");
 //                                EventBus.getDefault().post(new Enemy(result));
 //                                Log.i(TAG, "ENEMY");
-                            } else if(jObject.has("invite")) {
+                            } else if(jObject.has("cmd")) {
                                 String enemy = jObject.getString("enemy");
+                                Log.i(TAG, "ENEMY: " + enemy);
                                 String gameid = jObject.getString("gameid");
                                 EventBus.getDefault().post(new Invite(enemy, gameid));
                             }
@@ -142,6 +143,8 @@ public class WebSockets extends Service {
         try {
             jsonObject.put("cmd", "invite_accept");
             jsonObject.put("gameid", inviteAccept.gameid);
+            jsonObject.put("enemy", inviteAccept.enemy);
+            jsonObject.put("from", SignInActivity.NICKNAME);
         } catch (JSONException e) {
             e.printStackTrace();
         }

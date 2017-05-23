@@ -65,7 +65,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSelectedUser(UserListResult event) {
         try {
             jsonArray = new JSONArray(event.userListResult);
@@ -96,7 +96,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         alert11.show();
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onStartGame(Game game) {
         Intent intent = new Intent(GameMenuActivity.this, MainActivity.class);
         intent.putExtra("gameid", game.gameid);
@@ -105,7 +105,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         startActivity(intent);
     }
 
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onInvite(final Invite invite) {
         AlertDialog.Builder inviteToBattle = new AlertDialog.Builder(this);
         inviteToBattle.setMessage("Ваш противник " + invite.enemy + " приглашает Вас на игру");
@@ -115,7 +115,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-                        EventBus.getDefault().post(new InviteAccept("invite_accept", invite.gameid));
+                        EventBus.getDefault().post(new InviteAccept("invite_accept", invite.gameid, invite.enemy));
                     }
                 });
         AlertDialog alert11 = inviteToBattle.create();
