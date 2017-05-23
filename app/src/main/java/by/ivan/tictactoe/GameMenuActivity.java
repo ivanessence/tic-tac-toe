@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -78,17 +79,17 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
 
     @Subscribe
     public void onGetEnemy(Enemy enemy) {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Ваш противник " + enemy.enemy + " послал Вас нахуй");
-        builder1.setCancelable(true);
-        builder1.setPositiveButton(
+        AlertDialog.Builder kissEnemyAssAlert = new AlertDialog.Builder(this);
+        kissEnemyAssAlert.setMessage("Ваш противник " + enemy.enemy + " послал Вас нахуй");
+        kissEnemyAssAlert.setCancelable(true);
+        kissEnemyAssAlert.setPositiveButton(
                 "Понятненько",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
                 });
-        AlertDialog alert11 = builder1.create();
+        AlertDialog alert11 = kissEnemyAssAlert.create();
         alert11.show();
     }
 
@@ -96,6 +97,8 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
     public void onStartGame(Game game) {
         Intent intent = new Intent(GameMenuActivity.this, MainActivity.class);
         intent.putExtra("gameid", game.gameid);
+        intent.putExtra("enemynickname", game.enemynickname);
+        Toast.makeText(this, "ПОНЕСЛАСЬ", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 

@@ -44,7 +44,11 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignIn:
-                webSockets.sendMessage(editSignIn.getText().toString());
+                if (editSignIn.getText().toString().equals("")) {
+                    Toast.makeText(this, "Введи свой ник, Пидор", Toast.LENGTH_SHORT).show();
+                } else {
+                    webSockets.sendMessage(editSignIn.getText().toString());
+                }
                 break;
         }
     }

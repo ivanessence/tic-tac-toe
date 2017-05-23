@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
 import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserEvent;
@@ -68,11 +69,12 @@ public class WebSockets extends Service {
                             } else if(jObject.has("game")) { //Если приходит json gameid то запускаем игру
                                 result = jObject.getString("game");
                                 String gameid = jObject.getString("gameid");
-                                EventBus.getDefault().post(new Game(result, gameid));
+                                String enemynickname = jObject.getString("enemynickname");
+                                EventBus.getDefault().post(new Game(result, gameid, enemynickname));
                                 Log.i(TAG, "GAMEID");
                             } else if(jObject.has("enemy")) { //Если это, то оппонент не дал согласие на игру, и нам приходит отказ
                                 result = jObject.getString("enemy");
-                                EventBus.getDefault().post(new UserListResult(result));
+                                EventBus.getDefault().post(new Enemy(result));
                                 Log.i(TAG, "ENEMY");
                             }
 
