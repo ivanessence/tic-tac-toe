@@ -7,14 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import EventBusPOJO.MessageFromServer;
 
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,26 +52,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(MessageFromServer event) {
         Log.i(TAG, "onMessageEvent: " + event.message);
-        JSONObject jObject  = null;
-        String status = null;
-        try {
-            jObject = new JSONObject(event.message);
-            status = jObject.getString("status");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (status.equals("success")) {
+        if (event.message.equals("success")) {
             NICKNAME = editSignIn.getText().toString();
             Intent intent = new Intent(SignInActivity.this, GameMenuActivity.class);
             String users = null;
-            try {
-                users = jObject.getString("users");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            intent.putExtra("users", users);
             startActivity(intent);
-        } else if (status.equals("fail")) {
+        } else if (event.message.equals("fail")) {
             Toast.makeText(this, "Данный пользователь уже есть, ПОШЁЛ НАХУЙ", Toast.LENGTH_LONG).show();
         }
 

@@ -1,6 +1,8 @@
 package by.ivan.tictactoe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,13 +13,18 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import EventBusPOJO.Enemy;
+import EventBusPOJO.Game;
+import EventBusPOJO.UserEvent;
+import EventBusPOJO.UserList;
+import EventBusPOJO.UserListResult;
 
 public class GameMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,23 +41,13 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
 
+        EventBus.getDefault().register(this);
         usersListView = (ListView) findViewById(R.id.usersListView);
         button = (Button) findViewById(R.id.button2) ;
         button.setOnClickListener(this);
 
-        Intent intent = getIntent();
-        Log.i(TAG, "onCreate: " + intent.getStringExtra("users"));
-        try {
-            jsonArray = new JSONArray(intent.getStringExtra("users"));
-            Log.i(TAG, "onCreate: " + jsonArray.get(0));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        userList = getUsersList(jsonArray);
+        EventBus.getDefault().post(new UserList("getUserList"));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, userList);
-        usersListView.setAdapter(adapter);
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -62,6 +59,44 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
             }
 
         });
+    }
+
+    @Subscribe
+    public void onSelectedUser(UserListResult event) {
+        try {
+            jsonArray = new JSONArray(event.userListResult);
+            Log.i(TAG, "onCreate: " + jsonArray.get(0));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        userList = getUsersList(jsonArray);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, userList);
+        usersListView.setAdapter(adapter);
+    }
+
+    @Subscribe
+    public void onGetEnemy(Enemy enemy) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setMessage("Ваш противник " + enemy.enemy + " послал Вас нахуй");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton(
+                "Понятненько",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    @Subscribe
+    public void onStartGame(Game game) {
+        Intent intent = new Intent(GameMenuActivity.this, MainActivity.class);
+        intent.putExtra("gameid", game.gameid);
+        startActivity(intent);
     }
 
     public List getUsersList(JSONArray jsonArray) {

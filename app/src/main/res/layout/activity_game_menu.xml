@@ -21,4 +21,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
         android:text="Button" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/userList"
+        android:layout_above="@+id/usersListView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

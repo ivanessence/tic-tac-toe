@@ -1,4 +1,4 @@
-package by.ivan.tictactoe;
+package EventBusPOJO;
 
 import java.util.ArrayList;
 
