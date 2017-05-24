@@ -141,8 +141,8 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                         EventBus.getDefault().post(new InviteCancel("invite_cancel", invite.gameid));
                     }
                 });
+        startGameAlert = inviteToBattle.create();
         if(!startGameAlert.isShowing()) {
-            startGameAlert = inviteToBattle.create();
             startGameAlert.show();
         }
     }
