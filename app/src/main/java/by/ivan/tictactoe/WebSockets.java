@@ -22,6 +22,7 @@ import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
 import EventBusPOJO.Invite;
 import EventBusPOJO.InviteAccept;
+import EventBusPOJO.InviteCancel;
 import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
@@ -79,7 +80,7 @@ public class WebSockets extends Service {
 //                                EventBus.getDefault().post(new Enemy(result));
 //                                Log.i(TAG, "ENEMY");
                             } else if(jObject.has("cmd")) {
-                                String enemy = jObject.getString("enemy");
+                                String enemy = jObject.getString("from");
                                 Log.i(TAG, "ENEMY: " + enemy);
                                 String gameid = jObject.getString("gameid");
                                 EventBus.getDefault().post(new Invite(enemy, gameid));
@@ -145,6 +146,19 @@ public class WebSockets extends Service {
             jsonObject.put("gameid", inviteAccept.gameid);
             jsonObject.put("enemy", inviteAccept.enemy);
             jsonObject.put("from", SignInActivity.NICKNAME);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ws.sendText(jsonObject.toString());
+    }
+
+    @Subscribe
+    public void inviteCancel(InviteCancel inviteCancel) {
+        Log.i(TAG, "inviteCancel: ");
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("cmd", "invite_cancel");
+            jsonObject.put("gameid", inviteCancel.gameid);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -26,6 +26,7 @@ import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
 import EventBusPOJO.Invite;
 import EventBusPOJO.InviteAccept;
+import EventBusPOJO.InviteCancel;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
 import EventBusPOJO.UserListResult;
@@ -116,6 +117,14 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         EventBus.getDefault().post(new InviteAccept("invite_accept", invite.gameid, invite.enemy));
+                    }
+                });
+        inviteToBattle.setNegativeButton(
+                "Не надо так",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        EventBus.getDefault().post(new InviteCancel("invite_cancel", invite.gameid));
                     }
                 });
         AlertDialog alert11 = inviteToBattle.create();
