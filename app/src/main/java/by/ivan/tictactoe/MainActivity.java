@@ -2,7 +2,6 @@ package by.ivan.tictactoe;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String playerTurn;
     private boolean stateTurn = true;
     private boolean playerType = true;
-    private ImageView changed;
-    private BitmapDrawable zero;
     private TextView textEnemy;
     private TextView textShape;
 
@@ -93,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i(TAG, "onClick: ");
                 break;
             case R.id.imgField1:
-                EventBus.getDefault().post(new MessageFromServer("f1"));
+                EventBus.getDefault().post(new GameStep("1"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField2:
-                EventBus.getDefault().post(new MessageFromServer("f2"));
+                EventBus.getDefault().post(new GameStep("2"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -121,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField3:
-                EventBus.getDefault().post(new MessageFromServer("f3"));
+                EventBus.getDefault().post(new GameStep("3"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -135,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField4:
-                EventBus.getDefault().post(new MessageFromServer("f4"));
+                EventBus.getDefault().post(new GameStep("4"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -149,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField5:
-                EventBus.getDefault().post(new MessageFromServer("f5"));
+                EventBus.getDefault().post(new GameStep("5"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -163,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField6:
-                EventBus.getDefault().post(new MessageFromServer("f6"));
+                EventBus.getDefault().post(new GameStep("6"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -177,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField7:
-                EventBus.getDefault().post(new MessageFromServer("f7"));
+                EventBus.getDefault().post(new GameStep("7"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -191,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField8:
-                EventBus.getDefault().post(new MessageFromServer("f8"));
+                EventBus.getDefault().post(new GameStep("8"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -205,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField9:
-                EventBus.getDefault().post(new MessageFromServer("f9"));
+                EventBus.getDefault().post(new GameStep("9"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));

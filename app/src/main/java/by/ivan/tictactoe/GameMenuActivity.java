@@ -62,7 +62,6 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                 String selectedUser = (String) usersListView.getItemAtPosition(position);
                 EventBus.getDefault().post(new UserEvent(selectedUser));
             }
-
         });
     }
 
