@@ -97,9 +97,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        } else {imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField1.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -109,9 +111,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField2.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -121,9 +125,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField3.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -133,9 +139,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField4.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -145,9 +153,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField5.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -157,9 +167,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField6.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -169,9 +181,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField7.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -181,9 +195,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField8.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
@@ -193,9 +209,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (stateTurn) {
                     if (playerType) {
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                    } else {
+                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
                     imgField9.setClickable(false);
+                    stateTurn = false;
                 } else {
                     Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
                 }
