@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String gameid;
     public static String key;
     public Handler h;
+    String cells;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         gameid = gameInfo.getStringExtra("gameid");
         key = gameInfo.getStringExtra("shape");
 
+        final int win = 777;
+        final int looser = 666;
+        final int draw = 111;
+
         h = new Handler() {
             public void handleMessage(android.os.Message msg) {
                 switch (msg.what) {
@@ -106,6 +112,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 9:
                         setOpponentTurn(imgField9);
+                        break;
+                    case win:
+                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        break;
+                    case looser:
+                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        break;
+                    case draw:
+                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
+                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
                         break;
                 }
             }
@@ -159,8 +198,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Subscribe
-    public void onGameResult(GameResult gameResult) {
-
+    public void onGameResult(GameResult gresult, GameResult cel) {
+        Message msg = new Message();
+        String gameresult = gresult.gameresult;
+        msg.what = Integer.valueOf(gameresult);
+        h.sendMessage(msg);
     }
 
     @Subscribe
