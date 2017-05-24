@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imgField8;
     private ImageView imgField9;
     private String playerTurn;
-    private boolean stateTurn = true;
-    private boolean playerType = true;
+    private boolean stateTurn;
     private TextView textEnemy;
     private TextView textShape;
     public static String gameid;
@@ -95,13 +94,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i(TAG, "onClick: ");
                 break;
             case R.id.imgField1:
-                EventBus.getDefault().post(new UserMove("1"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("1"));
                     imgField1.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -109,13 +108,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField2:
-                EventBus.getDefault().post(new UserMove("2"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("2"));
                     imgField2.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -123,13 +122,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField3:
-                EventBus.getDefault().post(new UserMove("3"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("3"));
                     imgField3.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -137,13 +136,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField4:
-                EventBus.getDefault().post(new UserMove("4"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("4"));
                     imgField4.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -151,13 +150,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField5:
-                EventBus.getDefault().post(new UserMove("5"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("5"));
                     imgField5.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -165,13 +164,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField6:
-                EventBus.getDefault().post(new UserMove("6"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("6"));
                     imgField6.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -179,13 +178,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField7:
-                EventBus.getDefault().post(new UserMove("7"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("7"));
                     imgField7.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -193,13 +192,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField8:
-                EventBus.getDefault().post(new UserMove("8"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("8"));
                     imgField8.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -207,13 +206,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField9:
-                EventBus.getDefault().post(new UserMove("9"));
                 if (stateTurn) {
-                    if (playerType) {
+                    if (key.equals("X")) {
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                     } else {
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                     }
+                    EventBus.getDefault().post(new UserMove("9"));
                     imgField9.setClickable(false);
                     stateTurn = false;
                 } else {
@@ -230,6 +229,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void onGameStep(GameStep gameStep) {
-
+        String gamestep = gameStep.gameStep;
     }
 }
