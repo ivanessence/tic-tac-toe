@@ -40,6 +40,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
     private ListView usersListView;
     private JSONArray jsonArray;
     private List userList;
+    private AlertDialog startGameAlert;
 
 
     @Override
@@ -47,12 +48,11 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
 
-        EventBus.getDefault().register(this);
         usersListView = (ListView) findViewById(R.id.usersListView);
         button = (Button) findViewById(R.id.button2) ;
         button.setOnClickListener(this);
 
-        EventBus.getDefault().post(new UserList("getUserList"));
+
 
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -64,6 +64,19 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                 EventBus.getDefault().post(new UserEvent(selectedUser));
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+        EventBus.getDefault().post(new UserList("getUserList"));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -128,8 +141,10 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                         EventBus.getDefault().post(new InviteCancel("invite_cancel", invite.gameid));
                     }
                 });
-        AlertDialog alert11 = inviteToBattle.create();
-        alert11.show();
+        if(!startGameAlert.isShowing()) {
+            startGameAlert = inviteToBattle.create();
+            startGameAlert.show();
+        }
     }
 
     public List getUsersList(JSONArray jsonArray) {

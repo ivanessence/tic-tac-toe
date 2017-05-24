@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
+import EventBusPOJO.GameResult;
 import EventBusPOJO.GameStep;
 import EventBusPOJO.Invite;
 import EventBusPOJO.InviteAccept;
@@ -92,6 +93,10 @@ public class WebSockets extends Service {
                                 String gamestep = jObject.getString("gamestep");
                                 EventBus.getDefault().post(new GameStep(gamestep));
                                 Log.i(TAG, "GAMESTEP: " + gamestep);
+                            } else if(jObject.has("gameresult")) {
+                                String gameresult = jObject.getString("gameresult");
+                                String cells = jObject.getString("cells");
+                                EventBus.getDefault().post(new GameResult(gameresult, cells));
                             }
 
                             Log.i(TAG, "onTextMessage2: " + result);

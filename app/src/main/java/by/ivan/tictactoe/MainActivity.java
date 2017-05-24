@@ -16,6 +16,7 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import EventBusPOJO.GameResult;
 import EventBusPOJO.GameStep;
 import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserMove;
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Subscribe
-    public void giveData(MessageFromServer event) {
+    public void onGameResult(GameResult gameResult) {
 
     }
 
