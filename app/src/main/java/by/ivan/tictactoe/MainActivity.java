@@ -1,5 +1,6 @@
 package by.ivan.tictactoe;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -8,11 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import EventBusPOJO.GameStep;
 import EventBusPOJO.MessageFromServer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,11 +36,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean playerType = true;
     private ImageView changed;
     private BitmapDrawable zero;
+    private TextView textEnemy;
+    private TextView textShape;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textEnemy = (TextView) findViewById(R.id.textEnemy);
+        textShape = (TextView) findViewById(R.id.textShape);
         one = (Button) findViewById(R.id.button);
         one.setOnClickListener(this);
         imgField1 = (ImageView) findViewById(R.id.imgField1);
@@ -58,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgField8.setOnClickListener(this);
         imgField9 = (ImageView) findViewById(R.id.imgField9);
         imgField9.setOnClickListener(this);
+
+        Intent gameInfo = getIntent();
+        String enemy = gameInfo.getStringExtra("enemynickname");
+        String shape = gameInfo.getStringExtra("shape");
+        textEnemy.setText(enemy);
+        textShape.setText(shape);
     }
 
 
@@ -192,6 +205,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void giveData(MessageFromServer event) {
+
+    }
+
+    @Subscribe
+    public void onGameStep(GameStep gameStep) {
 
     }
 }

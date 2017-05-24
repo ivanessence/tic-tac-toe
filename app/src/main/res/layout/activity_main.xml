@@ -102,4 +102,36 @@
         android:layout_toStartOf="@+id/button"
         app:srcCompat="@android:drawable/list_selector_background" />
 
+    <TextView
+        android:id="@+id/textViewEnemy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/enemy" />
+
+    <TextView
+        android:id="@+id/textViewShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shape"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imgField2" />
+
+    <TextView
+        android:id="@+id/textEnemy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imgField4" />
+
+    <TextView
+        android:id="@+id/textShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

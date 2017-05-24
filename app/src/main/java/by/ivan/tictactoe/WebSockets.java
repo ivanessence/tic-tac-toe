@@ -73,7 +73,8 @@ public class WebSockets extends Service {
                                 result = jObject.getString("game");
                                 String gameid = jObject.getString("gameid");
                                 String enemynickname = jObject.getString("enemynickname");
-                                EventBus.getDefault().post(new Game(result, gameid, enemynickname));
+                                String key = jObject.getString("key");
+                                EventBus.getDefault().post(new Game(result, gameid, enemynickname, key));
                                 Log.i(TAG, "GAMEID");
 //                            } else if(jObject.has("enemy")) { //Если это, то оппонент не дал согласие на игру, и нам приходит отказ
 //                                result = jObject.getString("enemy");

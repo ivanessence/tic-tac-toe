@@ -102,6 +102,7 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(GameMenuActivity.this, MainActivity.class);
         intent.putExtra("gameid", game.gameid);
         intent.putExtra("enemynickname", game.enemynickname);
+        intent.putExtra("shape", game.key);
         Toast.makeText(this, "ПОНЕСЛАСЬ", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }

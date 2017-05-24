@@ -3,4 +3,6 @@
     <string name="username">Введите свой ник</string>
     <string name="enter">Войти</string>
     <string name="userList">Список доступных игроков</string>
+    <string name="enemy">Ваш оппонент: </string>
+    <string name="shape">Ваша фигура: </string>
 </resources>
