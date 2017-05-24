@@ -16,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import EventBusPOJO.GameStep;
 import EventBusPOJO.MessageFromServer;
+import EventBusPOJO.UserMove;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean playerType = true;
     private TextView textEnemy;
     private TextView textShape;
+    public static String gameid;
+    public static String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String shape = gameInfo.getStringExtra("shape");
         textEnemy.setText(enemy);
         textShape.setText(shape);
+        gameid = gameInfo.getStringExtra("gameid");
+        key = gameInfo.getStringExtra("shape");
     }
 
 
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i(TAG, "onClick: ");
                 break;
             case R.id.imgField1:
-                EventBus.getDefault().post(new GameStep("1"));
+                EventBus.getDefault().post(new UserMove("1"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField2:
-                EventBus.getDefault().post(new GameStep("2"));
+                EventBus.getDefault().post(new UserMove("2"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField3:
-                EventBus.getDefault().post(new GameStep("3"));
+                EventBus.getDefault().post(new UserMove("3"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -132,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField4:
-                EventBus.getDefault().post(new GameStep("4"));
+                EventBus.getDefault().post(new UserMove("4"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -146,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField5:
-                EventBus.getDefault().post(new GameStep("5"));
+                EventBus.getDefault().post(new UserMove("5"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -160,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField6:
-                EventBus.getDefault().post(new GameStep("6"));
+                EventBus.getDefault().post(new UserMove("6"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -174,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField7:
-                EventBus.getDefault().post(new GameStep("7"));
+                EventBus.getDefault().post(new UserMove("7"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -188,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField8:
-                EventBus.getDefault().post(new GameStep("8"));
+                EventBus.getDefault().post(new UserMove("8"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -202,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.imgField9:
-                EventBus.getDefault().post(new GameStep("9"));
+                EventBus.getDefault().post(new UserMove("9"));
                 if (stateTurn) {
                     if (playerType) {
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -225,6 +230,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void onGameStep(GameStep gameStep) {
-
+        
     }
 }

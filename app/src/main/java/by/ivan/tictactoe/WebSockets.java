@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import EventBusPOJO.Enemy;
 import EventBusPOJO.Game;
+import EventBusPOJO.GameStep;
 import EventBusPOJO.Invite;
 import EventBusPOJO.InviteAccept;
 import EventBusPOJO.InviteCancel;
@@ -27,6 +28,7 @@ import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
 import EventBusPOJO.UserListResult;
+import EventBusPOJO.UserMove;
 
 /**
  * Created by ivanessence on 19.05.2017.
@@ -85,6 +87,10 @@ public class WebSockets extends Service {
                                 Log.i(TAG, "ENEMY: " + enemy);
                                 String gameid = jObject.getString("gameid");
                                 EventBus.getDefault().post(new Invite(enemy, gameid));
+                            } else if(jObject.has("gamestep")) {
+                                String gamestep = jObject.getString("gamestep");
+                                EventBus.getDefault().post(new GameStep(gamestep));
+                                Log.i(TAG, "GAMESTEP: " + gamestep);
                             }
 
                             Log.i(TAG, "onTextMessage2: " + result);
@@ -160,6 +166,21 @@ public class WebSockets extends Service {
         try {
             jsonObject.put("cmd", "invite_cancel");
             jsonObject.put("gameid", inviteCancel.gameid);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ws.sendText(jsonObject.toString());
+    }
+
+    @Subscribe
+    public void onUserMove(UserMove userMove) {
+        Log.i(TAG, "onUserMove: ");
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("cmd", "game");
+            jsonObject.put("gameid", MainActivity.gameid);
+            jsonObject.put("cell", userMove.userMove);
+            jsonObject.put("key", MainActivity.key);
         } catch (JSONException e) {
             e.printStackTrace();
         }
