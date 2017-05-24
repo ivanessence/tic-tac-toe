@@ -80,31 +80,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void handleMessage(android.os.Message msg) {
                 switch (msg.what) {
                     case 1:
-                        setOpponentTurn("1", imgField1);
+                        setOpponentTurn(imgField1);
                         break;
                     case 2:
-                        setOpponentTurn("2", imgField2);
+                        setOpponentTurn(imgField2);
                         break;
                     case 3:
-                        setOpponentTurn("3", imgField3);
+                        setOpponentTurn(imgField3);
                         break;
                     case 4:
-                        setOpponentTurn("4", imgField4);
+                        setOpponentTurn(imgField4);
                         break;
                     case 5:
-                        setOpponentTurn("5", imgField5);
+                        setOpponentTurn(imgField5);
                         break;
                     case 6:
-                        setOpponentTurn("6", imgField6);
+                        setOpponentTurn(imgField6);
                         break;
                     case 7:
-                        setOpponentTurn("7", imgField7);
+                        setOpponentTurn(imgField7);
                         break;
                     case 8:
-                        setOpponentTurn("8", imgField8);
+                        setOpponentTurn(imgField8);
                         break;
                     case 9:
-                        setOpponentTurn("9", imgField9);
+                        setOpponentTurn(imgField9);
                         break;
                 }
             }
@@ -186,8 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
         }
     }
-    public void setOpponentTurn (String f, ImageView iv) {
-        if (stateTurn) {
+    public void setOpponentTurn (ImageView iv) {
             if (key.equals("X")) {
                 iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
             } else {
@@ -195,9 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             iv.setClickable(false);
             stateTurn = true;
-        } else {
-            Toast.makeText(this, "Противник сделал ход", Toast.LENGTH_SHORT).show();
-        }
     }
 }
 
