@@ -40,13 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String gameid;
     public static String key;
     public Handler h;
-    Message msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        msg = new Message();
         textEnemy = (TextView) findViewById(R.id.textEnemy);
         textShape = (TextView) findViewById(R.id.textShape);
         one = (Button) findViewById(R.id.button);
@@ -166,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void onGameStep(GameStep gameStep) {
+        Message msg = new Message();
         Log.i(TAG, "gameStep: " + gameStep.gameStep);
         String gamestep = gameStep.gameStep;
         msg.what = Integer.valueOf(gamestep);
