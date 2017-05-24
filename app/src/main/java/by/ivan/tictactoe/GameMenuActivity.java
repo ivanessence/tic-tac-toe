@@ -30,6 +30,7 @@ import EventBusPOJO.InviteCancel;
 import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
 import EventBusPOJO.UserListResult;
+import EventBusPOJO.WebsocketDisconnect;
 
 public class GameMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -151,5 +152,31 @@ public class GameMenuActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder inviteToBattle = new AlertDialog.Builder(this);
+        inviteToBattle.setMessage("Вы уверены, что хотите покинуть улицу сезам?");
+        inviteToBattle.setCancelable(true);
+        inviteToBattle.setPositiveButton(
+                "Алаверды",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        EventBus.getDefault().post( new WebsocketDisconnect());
+                        GameMenuActivity.super.onBackPressed();
+                    }
+                });
+        inviteToBattle.setNegativeButton(
+                "Не надо так ",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                    }
+                });
+        AlertDialog alert11 = inviteToBattle.create();
+        alert11.show();
     }
 }
