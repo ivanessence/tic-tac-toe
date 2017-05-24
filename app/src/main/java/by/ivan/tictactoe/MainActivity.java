@@ -2,6 +2,8 @@ package by.ivan.tictactoe;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textShape;
     public static String gameid;
     public static String key;
+    Handler h;
+    Message msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textShape.setText(shape);
         gameid = gameInfo.getStringExtra("gameid");
         key = gameInfo.getStringExtra("shape");
+
+        h = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        setOpponentTurn("1", imgField1);
+                        break;
+                    case 2:
+                        setOpponentTurn("2", imgField2);
+                        break;
+                    case 3:
+                        setOpponentTurn("3", imgField3);
+                        break;
+                    case 4:
+                        setOpponentTurn("4", imgField4);
+                        break;
+                    case 5:
+                        setOpponentTurn("5", imgField5);
+                        break;
+                    case 6:
+                        setOpponentTurn("6", imgField6);
+                        break;
+                    case 7:
+                        setOpponentTurn("7", imgField7);
+                        break;
+                    case 8:
+                        setOpponentTurn("8", imgField8);
+                        break;
+                    case 9:
+                        setOpponentTurn("9", imgField9);
+                        break;
+                }
+            }
+        };
     }
 
 
@@ -90,134 +128,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.button:
-                Log.i(TAG, "onClick: ");
-                break;
             case R.id.imgField1:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("1"));
-                    imgField1.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("1", imgField1);
                 break;
             case R.id.imgField2:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("2"));
-                    imgField2.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("2", imgField2);
                 break;
             case R.id.imgField3:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("3"));
-                    imgField3.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("3", imgField3);
                 break;
             case R.id.imgField4:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("4"));
-                    imgField4.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("4", imgField4);
                 break;
             case R.id.imgField5:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("5"));
-                    imgField5.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("5", imgField5);
                 break;
             case R.id.imgField6:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("6"));
-                    imgField6.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("6", imgField6);
                 break;
             case R.id.imgField7:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("7"));
-                    imgField7.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("7", imgField7);
                 break;
             case R.id.imgField8:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("8"));
-                    imgField8.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("8", imgField8);
                 break;
             case R.id.imgField9:
-                if (stateTurn) {
-                    if (key.equals("X")) {
-                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                    } else {
-                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
-                    }
-                    EventBus.getDefault().post(new UserMove("9"));
-                    imgField9.setClickable(false);
-                    stateTurn = false;
-                } else {
-                    Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
-                }
+                move("9", imgField9);
                 break;
         }
     }
@@ -230,5 +166,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Subscribe
     public void onGameStep(GameStep gameStep) {
         String gamestep = gameStep.gameStep;
+        msg.what = Integer.valueOf(gamestep);
+        h.sendMessage(msg);
+    }
+
+    public void move(String f, ImageView iv) {
+        if (stateTurn) {
+            if (key.equals("X")) {
+                iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+            } else {
+                iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+            }
+            EventBus.getDefault().post(new UserMove(f));
+            iv.setClickable(false);
+            stateTurn = false;
+        } else {
+            Toast.makeText(this, "Ожидайте ход противника", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void setOpponentTurn (String f, ImageView iv) {
+        if (stateTurn) {
+            if (key.equals("X")) {
+                iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+            } else {
+                iv.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+            }
+            iv.setClickable(false);
+            stateTurn = true;
+        } else {
+            Toast.makeText(this, "Противник сделал ход", Toast.LENGTH_SHORT).show();
+        }
     }
 }
+
