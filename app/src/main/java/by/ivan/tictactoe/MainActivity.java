@@ -230,6 +230,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void onGameStep(GameStep gameStep) {
-        
+
     }
 }

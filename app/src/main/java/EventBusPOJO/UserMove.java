@@ -7,7 +7,7 @@ package EventBusPOJO;
 public class UserMove {
     public String userMove;
 
-    public UserMove(String gameStep) {
+    public UserMove(String userMove) {
         this.userMove = userMove;
     }
 }
