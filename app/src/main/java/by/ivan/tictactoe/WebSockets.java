@@ -29,6 +29,7 @@ import EventBusPOJO.UserEvent;
 import EventBusPOJO.UserList;
 import EventBusPOJO.UserListResult;
 import EventBusPOJO.UserMove;
+import EventBusPOJO.WebsocketDisconnect;
 
 /**
  * Created by ivanessence on 19.05.2017.
@@ -185,6 +186,20 @@ public class WebSockets extends Service {
             e.printStackTrace();
         }
         Log.i(TAG, "onUserMoveJSON: " + jsonObject.toString());
+        ws.sendText(jsonObject.toString());
+    }
+
+    @Subscribe
+    public void onWSDisconnect(WebsocketDisconnect websocketDisconnect) {
+        Log.i(TAG, "onWSDisconnect: ");
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("cmd", "disconnect");
+            jsonObject.put("nickname", SignInActivity.NICKNAME);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i(TAG, "onWSDisconnect: " + jsonObject.toString());
         ws.sendText(jsonObject.toString());
     }
 
