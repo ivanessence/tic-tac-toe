@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imgField8;
     private ImageView imgField9;
     private String playerTurn;
-    private boolean stateTurn;
+    private boolean stateTurn = true;
     private TextView textEnemy;
     private TextView textShape;
     public static String gameid;
@@ -165,8 +165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Subscribe
     public void onGameStep(GameStep gameStep) {
+        Log.i(TAG, "gameStep: " + gameStep);
         String gamestep = gameStep.gameStep;
         msg.what = Integer.valueOf(gamestep);
+        Log.i(TAG, "msg.what: " + msg.what);
         h.sendMessage(msg);
     }
 
