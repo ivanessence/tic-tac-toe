@@ -13,5 +13,4 @@ public class GameResult {
         this.gameresult = gameresult;
         this.cells = cells;
     }
-
 }

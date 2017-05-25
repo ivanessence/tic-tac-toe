@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +18,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import EventBusPOJO.GameResult;
 import EventBusPOJO.GameStep;
-import EventBusPOJO.MessageFromServer;
 import EventBusPOJO.UserMove;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -35,14 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imgField7;
     private ImageView imgField8;
     private ImageView imgField9;
-    private String playerTurn;
     private boolean stateTurn = true;
     private TextView textEnemy;
     private TextView textShape;
     public static String gameid;
     public static String key;
     public Handler h;
-    String cells;
+    public Handler hoho;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textShape.setText(shape);
         gameid = gameInfo.getStringExtra("gameid");
         key = gameInfo.getStringExtra("shape");
+        if (key.equals("O")) {
+            stateTurn = false;
+        }
 
         final int win = 777;
         final int looser = 666;
@@ -113,18 +113,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 9:
                         setOpponentTurn(imgField9);
                         break;
+                }
+            }
+        };
+
+        hoho = new Handler() {
+            public void handleMessage(android.os.Message msg2) {
+                switch (msg2.what) {
                     case win:
-                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
-                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
+                        Log.i(TAG, "handleMessage: WIN" );
+                        imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField4.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField5.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField6.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField7.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField8.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
+                        imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.zero2));
                         break;
                     case looser:
+                        Log.i(TAG, "handleMessage: LOOSE" );
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
@@ -136,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         imgField9.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.cross2));
                         break;
                     case draw:
+                        Log.i(TAG, "handleMessage: DRAW" );
                         imgField1.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
                         imgField2.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
                         imgField3.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.field));
@@ -198,11 +208,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Subscribe
-    public void onGameResult(GameResult gresult, GameResult cel) {
-        Message msg = new Message();
+    public void onGameResult(GameResult gresult) {
+        Message msg2 = new Message();
         String gameresult = gresult.gameresult;
-        msg.what = Integer.valueOf(gameresult);
-        h.sendMessage(msg);
+        msg2.what = Integer.valueOf(gameresult);
+        hoho.sendMessage(msg2);
     }
 
     @Subscribe
